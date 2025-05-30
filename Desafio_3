@@ -42,3 +42,66 @@ struct ContentView: View {
     ContentView()
 }
  
+
+////
+////
+////
+
+import SwiftUI
+
+struct ContentView: View {
+    
+    @State private var alerta = false
+    @State private var nome = ""
+    
+    var body: some View {
+        ZStack {
+            Image("imagemzada")
+                .resizable()
+                .scaledToFill()
+                .blur(radius: 10)
+                .overlay(Color.gray.opacity(0.7))
+                .ignoresSafeArea()
+            
+            VStack {
+                Text("Bem vindo, \(nome)")
+                    .padding()
+                HStack {
+                    Spacer()
+                    TextField("", text: $nome)
+                    Spacer()
+                }
+                .padding(.bottom)
+                
+                Spacer()
+                
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 100)
+                    .padding()
+                
+                Image("truck")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 150)
+                    .padding()
+                
+                Spacer()
+                
+                Button("Entrar") {
+                    alerta.toggle()
+                }
+                .alert("ALERTA!", isPresented: $alerta) {
+                } message: {
+                    Text("Você irá iniciar o desafio da aula agora")
+                }
+                .padding()
+            }
+        }
+    }
+}
+
+#Preview {
+    ContentView()
+}
