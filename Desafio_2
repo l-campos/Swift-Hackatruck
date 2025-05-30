@@ -1,0 +1,31 @@
+//
+//  ContentView.swift
+//  Aula_1
+//
+//  Created by Turma02-19 on 30/05/25.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        VStack{
+            HStack {
+                Image("Captura de Tela 2023-01-18 às 22.59.48")
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .padding()
+                VStack{
+                    Text("HackaTruck").foregroundStyle(.red)
+                    Text("77 universidades").foregroundStyle(.blue)
+                    Text("5 regiões do Brasil").foregroundStyle(.yellow)
+                }
+            }
+        }
+        .padding()
+    }
+}
+#Preview {
+    ContentView()
+}
