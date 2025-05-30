@@ -1,0 +1,44 @@
+//
+//  ContentView.swift
+//  Aula_1
+//
+//  Created by Turma02-19 on 30/05/25.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    
+    @State private var alerta = false
+    @State private var nome = ""
+    var body: some View {
+        ZStack{
+            VStack{
+                Text("Bem vindo")
+                    .padding()
+                TextField("", text: $nome)
+                Spacer()
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                Image("truck")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                Spacer()
+                    .padding()
+                Button("Entrar"){
+                    alerta.toggle()
+                }
+                .alert("     ALERTA!                                                              Você irá iniciar o desafio da aula agora", isPresented: $alerta) {
+                }
+            }
+            
+        }
+    }
+}
+#Preview {
+    ContentView()
+}
+ 
