@@ -1,0 +1,15 @@
+//
+//  CharView.swift
+//  Aula_API
+//
+//  Created by Turma02-19 on 04/06/25.
+//
+
+import SwiftUI
+
+struct CharView: View {
+    let personagem: Personagem
+    var body: some View {
+        Text(personagem.name!)
+    }
+}
