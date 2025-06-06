@@ -1,0 +1,70 @@
+import SwiftUI
+
+struct ContentView: View {
+    @StateObject var viewModel = ViewModel()
+
+    var body: some View {
+        NavigationStack{
+            
+                GeometryReader { geometry in
+                    VStack{
+                        ZStack{
+                            Image("salao")
+                                .resizable()
+                                .scaledToFill()
+                                .blur(radius: 10)
+                                .overlay(Color.gray.opacity(0.7))
+                                .ignoresSafeArea()
+                            Image("grifinoria")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 150, height: 100)
+                                .padding()
+                        }
+                        .frame(height: geometry.size.height * 0.3)
+                        ZStack{
+                            ScrollView{
+                            Image("red")
+                                    .ignoresSafeArea()
+                            VStack{
+                                ForEach(viewModel.persona) { index in
+                                    NavigationLink(destination: CharView(personagem: index)){
+                                        HStack {
+                                            if let urlString = index.image, let url = URL(string: urlString) {
+                                                AsyncImage(url: url) { image in
+                                                    image
+                                                        .resizable()
+                                                        .frame(width: 50, height: 50)
+                                                        .clipShape(Circle())
+                                                } placeholder: {
+                                                    ProgressView()
+                                                }
+                                            } else {
+                                                Image(systemName: "person.fill")
+                                                    .resizable()
+                                                    .frame(width: 50, height: 50)
+                                                    .foregroundColor(.gray)
+                                            }
+                                            
+                                            Text(index.name!)
+                                                .font(.headline)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .frame(height: geometry.size.height * 0.7)
+                    }
+                }
+            }
+        }
+            .onAppear {
+                viewModel.fetch()
+            }
+        
+    }
+}
+
+#Preview{
+    ContentView()
+}
